@@ -18,16 +18,6 @@
     "variables": {
     },
     "resources": [
-        { 
-            "name": "[parameters('storageName')]",
-            "type": "Microsoft.Storage/storageAccounts",
-            "location": "[resourceGroup().location]",
-            "apiVersion": "2015-05-01-preview",
-            "dependsOn": [ ],
-            "properties": {
-                "accountType": "[parameters('storageType')]"
-            }
-        }
     ],
     "outputs": {
         "storageId": {
