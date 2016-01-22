@@ -1,0 +1,19 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+    "variables": { 
+        "infavirtualnetworkPrefix": "10.0.0.0/16",
+        "infavirtualnetworkSubnet1Name": "Subnet-1",
+        "infavirtualnetworkSubnet1Prefix": "10.0.0.0/24"
+    },
+    "resources": [
+    ],
+    "outputs": {
+        "storageAccountId": {
+            "value": "[resourceId('Microsoft.Network/virtualNetworks', 'infavirtualnetwork')]",
+            "type": "string"
+        }
+    }
+}
