@@ -1,0 +1,101 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageExistingOrNew": {
+            "type": "string",
+            "allowedValues": [
+                "existing",
+                "new"
+            ]
+        },
+        "storageName": {
+            "type": "string"
+        },
+        "storageType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Standard_GRS",
+                "Standard_ZRS"
+            ]
+        },
+        "vnetExistingOrNew": {
+            "type": "string",
+            "allowedValues": [
+                "existing",
+                "new"
+            ]
+        },
+        "vnetName": {
+            "type": "string"
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "subnetPrefix": { 
+            "type": "string"
+        }
+    },
+    "variables": {
+        "baseuri": "https://raw.githubusercontent.com/vijayanand17/tmptest/master/",
+
+        "storageUri": "[concat(variables('baseuri'), 'storage', parameters('storageExistingOrNew'),'.json')]",
+        "vnetUri": "[concat(variables('baseuri'), 'vnet', parameters('vnetExistingOrNew'),'.json')]"
+    },
+    "resources": [
+        {
+            "name": "storageSetup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('storageUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "storageName": {
+                        "value": "[parameters('storageName')]"
+                    },
+                    "storageType": {
+                        "value": "[parameters('storageType')]"
+                    }
+                }
+            }
+        },
+        {
+            "name": "vnetSetup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "dependsOn": [ "Microsoft.Resources/deployments/storageSetup" ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vnetUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "vnetName": {
+                        "value": "[parameters('vnetName')]"
+                    },
+                    "vnetAddressPrefix": {
+                        "value": "[parameters('vnetAddressPrefix')]"
+                    },
+                    "subnetName": {
+                        "value": "[parameters('subnetName')]"
+                    },
+                    "subnetPrefix": { 
+                        "value": "[parameters('subnetPrefix')]"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {
+    }
+}

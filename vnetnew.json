@@ -4,16 +4,22 @@
     "parameters": {
         "vnetName": {
             "type": "string"
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "subnetPrefix": { 
+            "type": "string"
         }
     },
-    "variables": { 
-        "infavirtualnetworkPrefix": "10.0.0.0/16",
-        "infavirtualnetworkSubnet1Name": "Subnet-1",
-        "infavirtualnetworkSubnet1Prefix": "10.0.0.0/24"
+    "variables": {
     },
     "resources": [
         {
-            "name": "infavirtualnetwork",
+            "name": "[parameters('vnetName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-05-01-preview",
@@ -21,14 +27,14 @@
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
-                        "[variables('infavirtualnetworkPrefix')]"
+                        "[parameters('vnetAddressPrefix')]"
                     ]
                 },
                 "subnets": [
                     {
-                        "name": "[variables('infavirtualnetworkSubnet1Name')]",
+                        "name": "[parameters('subnetName')]",
                         "properties": {
-                            "addressPrefix": "[variables('infavirtualnetworkSubnet1Prefix')]"
+                            "addressPrefix": "[parameters('subnetPrefix')]"
                         }
                     }
                 ]

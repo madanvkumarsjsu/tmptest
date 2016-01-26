@@ -4,6 +4,15 @@
     "parameters": {
         "vnetName": {
             "type": "string"
+        },
+        "vnetAddressPrefix": {
+            "type": "string"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "subnetPrefix": { 
+            "type": "string"
         }
     },
     "variables": { 
