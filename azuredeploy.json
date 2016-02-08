@@ -173,8 +173,11 @@
                     "DBPassword": {
                         "value": "[parameters('DBPassword')]"
                     },
-                    "subnetId": {
-                        "value": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/', parameters('subnetName'))]"
+                    "VNetName": { 
+                        "value": "[parameters('vnetName')]"
+                    },
+                    "SubnetName": { 
+                        "value": "[parameters('subnetName')]"
                     }
                 }
             }

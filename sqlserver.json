@@ -20,19 +20,25 @@
         "DBPassword": {
             "type": "securestring"
         },
-        "subnetId": { 
+        "VNetName": { 
+            "type": "string"
+        },
+        "SubnetName": { 
             "type": "string"
         }
     },
     "variables": {
-        "VM01NicName": "[concat(parameters('VM01Name'), 'Nic')]"
+        "VM01NicName": "[concat(parameters('VM01Name'), 'Nic')]",
         "dbOsType": "windows",
 
         "ExtScriptURI": "https://raw.githubusercontent.com/vijayanand17/infascripts/master/",
         "ExtCDBScriptFile": "createsqldbuser.ps1",
 
         "InfaCustomeDBVMImage": "https://ispstorenp.blob.core.windows.net/copiedvhds/SQLServer2014C01-os-2015-11-29.vhd",
-        "InfaCustomVMDisk1": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'multitemvm01.osdisk.vhd')]"
+        "InfaCustomVMDisk1": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'multitemvm01.osdisk.vhd')]",
+        
+        "VNetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('VNetName'))]",
+        "SubnetId": "[concat(variables('VNetID'), '/subnets/', parameters('SubnetName'))]"
     },
     "resources": [
         {
@@ -67,9 +73,9 @@
                     {
                         "name": "ipconfig1",
                         "properties": {
-                            "privateIPAllocationMethod": "Static",
+                            "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[parameters('subnetId')]"
+                                "id": "[variables('SubnetId')]"
                             },
                             "publicIPAddress": {
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('VM01Name'))]"
