@@ -37,15 +37,58 @@
         "subnetName": {
             "type": "string"
         },
-        "subnetPrefix": { 
+        "subnetPrefix": {
             "type": "string"
+        },
+        "databaseType": {
+            "type": "string",
+            "allowedValues": [
+                "sqlserver",
+                "sqlserverazure"
+            ],
+            "defaultValue": "sqlserver"
+        },
+        "VM01Name": {
+            "type": "string"
+        },
+        "VM01AdminUsername": {
+            "type": "string"
+        },
+        "VM01AdminPassword": {
+            "type": "securestring"
+        },
+        "DBVMSize": {
+            "type": "string",
+            "defaultValue": "Standard_D3",
+            "allowedValues": [
+                "Standard_A1",
+                "Standard_A2",
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A11",
+                "Standard_D1",
+                "Standard_D2",
+                "Standard_D3",
+                "Standard_D4",
+                "Standard_D11",
+                "Standard_D12",
+                "Standard_D13",
+                "Standard_D14"
+            ]
+        },
+        "DBUser": {
+            "type": "string"
+        },
+        "DBPassword": {
+            "type": "securestring"
         }
     },
     "variables": {
         "baseuri": "https://raw.githubusercontent.com/vijayanand17/tmptest/master/",
 
         "storageUri": "[concat(variables('baseuri'), 'storage', parameters('storageExistingOrNew'),'.json')]",
-        "vnetUri": "[concat(variables('baseuri'), 'vnet', parameters('vnetExistingOrNew'),'.json')]"
+        "vnetUri": "[concat(variables('baseuri'), 'vnet', parameters('vnetExistingOrNew'),'.json')]",
+        "databaseUri": "[concat(variables('baseuri'), parameters('databaseType'),'.json')]"
     },
     "resources": [
         {
@@ -72,7 +115,9 @@
             "name": "vnetSetup",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
-            "dependsOn": [ "Microsoft.Resources/deployments/storageSetup" ],
+            "dependsOn": [
+                "Microsoft.Resources/deployments/storageSetup"
+            ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -89,12 +134,53 @@
                     "subnetName": {
                         "value": "[parameters('subnetName')]"
                     },
-                    "subnetPrefix": { 
+                    "subnetPrefix": {
                         "value": "[parameters('subnetPrefix')]"
                     }
                 }
             }
-        }
+        },
+        {
+            "name": "databaseSetup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "dependsOn": [
+                "Microsoft.Resources/deployments/storageSetup",
+                "Microsoft.Resources/deployments/vnetSetup"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('databaseUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "VM01Name": {
+                        "value": "[parameters('VM01Name')]"
+                    },
+                    "VM01AdminUsername": {
+                        "value": "[parameters('VM01AdminUsername')]"
+                    },
+                    "VM01AdminPassword": {
+                        "value": "[parameters('VM01AdminPassword')]"
+                    },
+                    "DBVMSize": {
+                        "value": "[parameters('DBVMSize')]"
+                    },
+                    "DBUser": {
+                        "value": "[parameters('DBUser')]"
+                    },
+                    "DBPassword": {
+                        "value": "[parameters('DBPassword')]"
+                    },
+                    "subnetId": {
+                        "value": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/', parameters('subnetName'))]"
+                    }
+                }
+            }
+        },
+
+
     ],
     "outputs": {
     }

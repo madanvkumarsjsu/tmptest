@@ -11,19 +11,49 @@
         "subnetName": {
             "type": "string"
         },
-        "subnetPrefix": { 
+        "subnetPrefix": {
             "type": "string"
         }
     },
     "variables": {
+        "NetworkSecurityGroupName": "NetworkSecurityGroupName"
     },
     "resources": [
+        {
+            "apiVersion": "2015-05-01-preview",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[variables('NetworkSecurityGroupName')]",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "NetworkSecurityGroup"
+            },
+            "properties": {
+                "securityRules": [
+                    {
+                        "name": "EndPointRule",
+                        "properties": {
+                            "description": "Enabling endpoints on ports required for Informatica.",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 100,
+                            "direction": "Inbound"
+                        }
+                    }
+                ]
+            }
+        },
         {
             "name": "[parameters('vnetName')]",
             "type": "Microsoft.Network/virtualNetworks",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-05-01-preview",
-            "dependsOn": [ ],
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('NetworkSecurityGroupName'))]"
+            ],
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -35,6 +65,9 @@
                         "name": "[parameters('subnetName')]",
                         "properties": {
                             "addressPrefix": "[parameters('subnetPrefix')]"
+                        },
+                        "networkSecurityGroup": {
+                            "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('NetworkSecurityGroupName'))]"
                         }
                     }
                 ]
