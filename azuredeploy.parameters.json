@@ -2,20 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "vnetExistingOrNew": {
-            "value": "new"
-        },
         "storageExistingOrNew": {
             "value": "new"
         },
         "storageName": {
-            "value": "learningstorage02"
+            "value": "infastore"
+        },
+        "vnetExistingOrNew": {
+            "value": "new"
         },
         "vnetName": {
-            "value": "infavirtualnetwork"
-        },
-        "storageType": {
-            "value": "Standard_ZRS"
+            "value": "infavnet"
         },
         "vnetAddressPrefix": {
             "value": "10.0.0.0/16"
@@ -27,7 +24,7 @@
             "value": "10.0.0.0/24"
         },
         "VM01Name": {
-            "value": "DBVM"
+            "value": "dbvm"
         },
         "VM01AdminUsername": {
             "value": "devuser"

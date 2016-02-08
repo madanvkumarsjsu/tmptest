@@ -32,7 +32,7 @@
         "ExtCDBScriptFile": "createsqldbuser.ps1",
 
         "InfaCustomeDBVMImage": "https://ispstorenp.blob.core.windows.net/copiedvhds/SQLServer2014C01-os-2015-11-29.vhd",
-        "InfaCustomVMDisk1": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'InfaBaseLUVM011.osdisk.vhd')]"
+        "InfaCustomVMDisk1": "[concat('https://ispstorenp.blob.core.windows.net/copiedvhds/', 'multitemvm01.osdisk.vhd')]"
     },
     "resources": [
         {
