@@ -16,7 +16,7 @@
         }
     },
     "variables": {
-        "NetworkSecurityGroupName": "NetworkSecurityGroupName"
+        "NetworkSecurityGroupName": "NetworkSecurityGroup"
     },
     "resources": [
         {
