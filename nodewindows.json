@@ -118,7 +118,7 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-05-01-preview",
             "dependsOn": [
-                "[concat('Microsoft.Network/publicIPAddresses/', concat(variables('VMNicNamePrefix'), add(parameters('Index'), 1)))]"
+                "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]"
             ],
             "tags": {
                 "displayName": "niccard"
@@ -133,7 +133,7 @@
                                 "id": "[variables('VMSubnetRef')]"
                             },
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('VMNicNamePrefix'), add(parameters('Index'), 1)))]"
+                                "id": "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]"
                             }
                         }
                     }
