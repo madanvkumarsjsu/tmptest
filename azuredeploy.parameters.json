@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageExistingOrNew": {
-            "value": "new"
+            "value": "existing"
         },
         "storageName": {
             "value": "infastore"
         },
         "vnetExistingOrNew": {
-            "value": "new"
+            "value": "existing"
         },
         "vnetName": {
             "value": "infavnet"
@@ -24,7 +24,7 @@
             "value": "10.0.0.0/24"
         },
         "VM01Name": {
-            "value": "dbvm"
+            "value": "dbvm02"
         },
         "VM01AdminUsername": {
             "value": "devuser"
@@ -37,6 +37,36 @@
         },
         "DBPassword": {
             "value": "tempBG@2008"
+        },
+        "VMOSType": {
+            "value": "windows"
+        },
+        "VMAdminUserName": {
+            "value": "devuser"
+        },
+        "VMAdminPassword": {
+            "value": "tempBG@2008"
+        },
+        "VMNamePrefix": {
+            "value": "VM02"
+        },
+        "VMCount": {
+            "value": 1
+        },
+        "InfaDomainName": {
+            "value": "ISPDomain"
+        },
+        "InfaDomainUser": {
+            "value": "admin"
+        },
+        "InfaDomainPassword": {
+            "value": "admin"
+        },
+        "InfaNodeNamePrefix": {
+            "value": "node"
+        },
+        "InfaKeyWord": {
+            "value": "node123"
         }
     }
 }
