@@ -120,10 +120,6 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', concat(variables('VMNicNamePrefix'), add(parameters('Index'), 1)))]"
             ],
-            "copy": {
-                "name": "gatewayNodeCount",
-                "count": "[parameters('Index')]"
-            },
             "tags": {
                 "displayName": "niccard"
             },
@@ -152,10 +148,6 @@
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('VMNicNamePrefix'), add(parameters('Index'), 1))]"
             ],
-            "copy": {
-                "name": "gatewayNodeCount",
-                "count": "[parameters('Index')]"
-            },
             "tags": {
                 "displayName": "nodevm"
             },
