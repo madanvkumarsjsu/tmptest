@@ -129,7 +129,7 @@
                         "value": "[parameters('VMCount')]"
                     },
                     "Index": {
-                        "value": "0"
+                        "value": 0
                     },
                     "InfaDomainName": {
                         "value": "[parameters('InfaDomainName')]"

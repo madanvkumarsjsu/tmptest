@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageExistingOrNew": {
-            "value": "existing"
+            "value": "new"
         },
         "storageName": {
-            "value": "infastore"
+            "value": "infastore02"
         },
         "vnetExistingOrNew": {
-            "value": "existing"
+            "value": "new"
         },
         "vnetName": {
             "value": "infavnet"
@@ -24,7 +24,7 @@
             "value": "10.0.0.0/24"
         },
         "VM01Name": {
-            "value": "dbvm02"
+            "value": "dbvmtest"
         },
         "VM01AdminUsername": {
             "value": "devuser"
@@ -48,7 +48,7 @@
             "value": "tempBG@2008"
         },
         "VMNamePrefix": {
-            "value": "VM02"
+            "value": "VMtest"
         },
         "VMCount": {
             "value": 1
