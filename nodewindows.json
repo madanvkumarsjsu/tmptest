@@ -82,6 +82,7 @@
         }
     },
     "variables": {
+        "VMPublicIPName": "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]",
         "VMNicNamePrefix": "[concat(parameters('VMNamePrefix'),'Nic')]",
         "VMSubnetRef": "[concat(resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName')), '/subnets/', parameters('subnetName'))]",
 
@@ -96,7 +97,7 @@
     },
     "resources": [
         {
-            "name": "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]",
+            "name": "[variables('VMPublicIPName')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-05-01-preview",
@@ -108,7 +109,7 @@
             "properties": {
                 "publicIPAllocationMethod": "Dynamic",
                 "dnsSettings": {
-                    "domainNameLabel": "[concat(variables('VMNicNamePrefix'), add(parameters('Index'), 1))]"
+                    "domainNameLabel": "[variables('VMPublicIPName')]"
                 }
             }
         },
@@ -118,7 +119,7 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-05-01-preview",
             "dependsOn": [
-                "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]"
+                "[concat('Microsoft.Network/publicIPAddresses/', variables('VMPublicIPName'))]"
             ],
             "tags": {
                 "displayName": "niccard"
@@ -133,7 +134,7 @@
                                 "id": "[variables('VMSubnetRef')]"
                             },
                             "publicIPAddress": {
-                                "id": "[toLower(concat(parameters('VMNamePrefix'), add(parameters('Index'), 1)))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('VMPublicIPName'))]"
                             }
                         }
                     }
