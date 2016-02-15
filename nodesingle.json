@@ -80,7 +80,8 @@
     },
     "variables": {
         "baseuri": "https://raw.githubusercontent.com/vijayanand17/tmptest/master/",
-        "nodeVMUri": "[concat(variables('baseuri'), 'node', parameters('VMOSType'),'.json')]"
+        "nodeVMOSUri": "[concat(variables('baseuri'), 'node', parameters('VMOSType'),'.json')]",
+        "masterNodeIndex": 0
     },
     "resources": [
         {
@@ -91,7 +92,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[variables('nodeVMUri')]",
+                    "uri": "[variables('nodeVMOSUri')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -129,7 +130,7 @@
                         "value": "[parameters('VMCount')]"
                     },
                     "Index": {
-                        "value": "0"
+                        "value": "[variables('masterNodeIndex')]"
                     },
                     "InfaDomainName": {
                         "value": "[parameters('InfaDomainName')]"
@@ -151,6 +152,6 @@
         }
     ],
     "outputs": {
-        "URI": {"type": "string", "value": "[variables('nodeVMUri')]"}
+        "URI": {"type": "string", "value": "[variables('nodeVMOSUri')]"}
     }
 }

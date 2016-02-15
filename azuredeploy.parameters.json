@@ -6,7 +6,7 @@
             "value": "new"
         },
         "storageName": {
-            "value": "infastore02"
+            "value": "infastoretest"
         },
         "vnetExistingOrNew": {
             "value": "new"
@@ -51,7 +51,7 @@
             "value": "VMtest"
         },
         "VMCount": {
-            "value": 1
+            "value": 2
         },
         "InfaDomainName": {
             "value": "ISPDomain"
