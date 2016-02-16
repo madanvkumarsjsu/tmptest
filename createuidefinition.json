@@ -350,7 +350,7 @@
         ],
 
         "outputs": {
-            /*"location": "[location()]",
+            "location": "[location()]",
             "virtualNetworkName": "[steps('nodeVMConfiguration').infavnet.name]",
             "subnetName": "[steps('nodeVMConfiguration').infavnet.subnets.subnet1.name]",
             "storageAccountName": "[steps('nodeVMConfiguration').storageAccount.name]",
@@ -370,7 +370,7 @@
             "infaDomainName": "[steps('infaDomainConfiguration').infaDomainName]",
             "infaDomainUser": "[steps('infaDomainConfiguration').infaDomainUser]",
             "infaDomainPassword": "[steps('infaDomainConfiguration').infaDomainPassword]",
-            "infaDomainEncryptionKeyword": "[steps('infaDomainConfiguration').infaDomainEncryptionKeyword]"*/
+            "infaDomainEncryptionKeyword": "[steps('infaDomainConfiguration').infaDomainEncryptionKeyword]"
         }
     }
 }
