@@ -5,7 +5,7 @@
         "basics": [
         ],
         "steps": [
-            {
+           /*{
                 "name": "nodeVMConfiguration",
                 "label": "Node Settings",
                 "subLabel": {
@@ -334,7 +334,7 @@
                         }
                     }
                 ]
-            },
+            },*/
             {
                 "label": "Informatica BDE settings",
                 "name": "infaBDEConfiguration",
