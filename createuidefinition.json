@@ -6,33 +6,6 @@
         ],
         "steps": [
             {
-                "label": "Informatica BDE settings",
-                "name": "infaBDEConfiguration",
-                "subLabel": {
-                    "preValidation": "Configure the Informatica HDI Cluster settings",
-                    "postValidation": "Done"
-                },
-                "bladeTitle": "Informatica Domain settings",
-                "elements": [
-                    //Azure HD insight cluster host name
-                    //Cluster Login/pass
-                    //Head node Login/pass
-            /*        mapreduce.jobhistory.address
-       Hostname
-      Port
-       mapreduce.jobhistory.webapp.address
-       Hostname
-      Port
-       yarn.resourcemanager.scheduler.address
-       Hostname
-      Port
-       yarn.resourcemanager.webapp.address
-       Hostname
-      Port*/
-                    //Head Node
-                ]
-            },
-            {
                 "name": "nodeVMConfiguration",
                 "label": "Node Settings",
                 "subLabel": {
@@ -181,6 +154,33 @@
                         },
                         "count": "[steps('nodeVMConfiguration').domainNodeCount]"
                     }
+                ]
+            },
+            {
+                "label": "Informatica BDE settings",
+                "name": "infaBDEConfiguration",
+                "subLabel": {
+                    "preValidation": "Configure the Informatica HDI Cluster settings",
+                    "postValidation": "Done"
+                },
+                "bladeTitle": "Informatica Domain settings",
+                "elements": [
+                    //Azure HD insight cluster host name
+                    //Cluster Login/pass
+                    //Head node Login/pass
+            /*        mapreduce.jobhistory.address
+       Hostname
+      Port
+       mapreduce.jobhistory.webapp.address
+       Hostname
+      Port
+       yarn.resourcemanager.scheduler.address
+       Hostname
+      Port
+       yarn.resourcemanager.webapp.address
+       Hostname
+      Port*/
+                    //Head Node
                 ]
             },
             {
