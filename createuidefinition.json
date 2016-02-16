@@ -156,7 +156,7 @@
                     }
                 ]
             },
-            /*{
+            {
                 "name": "databaseConfiguration",
                 "label": "Database settings",
                 "subLabel": {
@@ -334,7 +334,7 @@
                         }
                     }
                 ]
-            },*/
+            },
             {
                 "label": "Informatica BDE settings",
                 "name": "infaBDEConfiguration",
